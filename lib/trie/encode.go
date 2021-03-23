@@ -102,7 +102,7 @@ func decodeRecursive(r io.Reader, prev node) error {
 			if child != nil {
 				// there's supposed to be a child here, decode the next node and place it
 				// when we decode a branch node, we only know if a child is supposed to exist at a certain index (due to the
-				// bitmap). we also have the hashes of the children, but we can't reconstruct the children from that. so
+				// bitmap). we also have the hashes of the childTries, but we can't reconstruct the childTries from that. so
 				// instead, we put an empty leaf node where the child should be, so when we reconstruct it in this function,
 				// we can see that it's non-nil and we should decode the next node from the reader and place it here
 				scnode, err := sd.Decode([]byte{})

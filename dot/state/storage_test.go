@@ -69,3 +69,94 @@ func TestStorage_GetStorageByBlockHash(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, value, res)
 }
+
+func TestStorage_LoadFromDB(t *testing.T) {
+	storage := newTestStorageState(t)
+	ts, err := storage.TrieState(&trie.EmptyHash)
+	require.NoError(t, err)
+
+	keys := [][]byte{
+		[]byte("key"),
+		[]byte("key1"),
+	}
+
+	values := [][]byte{
+		[]byte("value"),
+		[]byte("value1"),
+	}
+
+	ts.Set(keys[0], values[0])
+	ts.Set(keys[1], values[1])
+
+	child := trie.NewEmptyTrie()
+	childKeys := []string{
+		"noot",
+		"noodle",
+		"other",
+	}
+	for i, key := range childKeys {
+		child.Put([]byte(key), []byte{byte(i)})
+	}
+
+	keyToChild := []byte("keytochild")
+	err = ts.SetChild(keyToChild, child)
+	require.NoError(t, err)
+
+	root, err := ts.Root()
+	require.NoError(t, err)
+
+	require.NoError(t, err)
+	err = storage.StoreTrie(ts)
+	require.NoError(t, err)
+
+	block := &types.Block{
+		Header: &types.Header{
+			ParentHash: testGenesisHeader.Hash(),
+			Number:     big.NewInt(1),
+			StateRoot:  root,
+		},
+		Body: types.NewBody([]byte{}),
+	}
+
+	err = storage.blockState.AddBlock(block)
+	require.NoError(t, err)
+
+	tr, err := storage.GetStorageChild(&root, keyToChild)
+	require.NoError(t, err)
+	require.NotNil(t, tr)
+
+	entries, err := storage.Entries(&root)
+	require.NoError(t, err)
+	require.Equal(t, 3, len(entries))
+
+	delete(storage.tries, root)
+
+	//val, err := storage.GetStorageChild(&root, keyToChild)
+	//fmt.Println(val)
+
+	data, err := storage.GetStorage(&root, keys[0])
+	require.NoError(t, err)
+	require.Equal(t, values[0], data)
+
+	delete(storage.tries, root)
+
+	prefixKeys, err := storage.GetKeysWithPrefix(&root, []byte("ke"))
+	require.NoError(t, err)
+	require.Equal(t, 2, len(prefixKeys))
+
+	delete(storage.tries, root)
+
+	entries, err = storage.Entries(&root)
+	require.NoError(t, err)
+	require.Equal(t, 3, len(entries))
+
+	delete(storage.tries, root)
+
+	tr, err = storage.GetStorageChild(&root, keyToChild)
+	require.NoError(t, err)
+	require.NotNil(t, tr)
+
+	//tr, err := storage.GetStorageFromChild(&root, keyToChild, keys[0])
+	//require.NoError(t, err)
+	//require.Nil(t, tr)
+}
