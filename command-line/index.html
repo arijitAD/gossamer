@@ -12,14 +12,14 @@
 <meta property="og:description" content="The Official Documentation for Gossamer A Go Implementation of the Polkadot Host" />
 <meta property="og:site_name" content="Gossamer Docs" />
 <script type="application/ld+json">
-{"headline":"Command-Line","@type":"WebPage","author":{"@type":"Person","name":"ChainSafe"},"description":"The Official Documentation for Gossamer A Go Implementation of the Polkadot Host","url":"/command-line/","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"ChainSafe"},"description":"The Official Documentation for Gossamer A Go Implementation of the Polkadot Host","url":"/gossamer/command-line/","@type":"WebPage","headline":"Command-Line","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" /><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Gossamer Docs" />
+<link rel="stylesheet" href="/gossamer/assets/css/style.css" />
+    <link rel="shortcut icon" href="/gossamer/assets/favicon.ico" /><link type="application/atom+xml" rel="alternate" href="/gossamer/feed.xml" title="Gossamer Docs" />
 </head>
 <body><header class="site-header">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Gossamer Docs</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/gossamer/">Gossamer Docs</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -29,7 +29,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/run-nodes/">Run Nodes</a><a class="page-link" href="/build-nodes/">Build Nodes</a><a class="page-link" href="/implementation/">Implementation</a><a class="page-link" href="/resources/">Resources</a></div>
+        <div class="trigger"><a class="page-link" href="/gossamer/run-nodes/">Run Nodes</a><a class="page-link" href="/gossamer/build-nodes/">Build Nodes</a><a class="page-link" href="/gossamer/implementation/">Implementation</a><a class="page-link" href="/gossamer/resources/">Resources</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -42,11 +42,11 @@
 
 <h2 id="gossamer-command">Gossamer Command</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">gossamer</code> command is the root command for the <code class="language-plaintext highlighter-rouge">gossamer</code> package (<code class="language-plaintext highlighter-rouge">cmd/gossamer</code>). The root command starts the node (and initializes the node if the node has not already been initialized).</p>
+<p>The <code class="highlighter-rouge">gossamer</code> command is the root command for the <code class="highlighter-rouge">gossamer</code> package (<code class="highlighter-rouge">cmd/gossamer</code>). The root command starts the node (and initializes the node if the node has not already been initialized).</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">gossamer</code> command accepts the following <strong><em>local flags</em></strong> and <strong><em>global flags</em></strong>:</p>
+<p>The <code class="highlighter-rouge">gossamer</code> command accepts the following <strong><em>local flags</em></strong> and <strong><em>global flags</em></strong>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--log value        Supports levels crit (silent) to trce (trace) (default: "info")
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--log value        Supports levels crit (silent) to trce (trace) (default: "info")
 --name value       Node implementation name
 --chain value      Node implementation id used to load default node configuration
 --config value     TOML configuration file
@@ -59,11 +59,11 @@
 --roles value      Roles of the gossamer node
 --nobootstrap      Disables network bootstrapping (mdns still enabled)
 --nomdns           Disables network mdns discovery
---rpc              Enable the HTTP-RPC server
+--rpc-external     Enable the external HTTP-RPC server
 --rpchost value    HTTP-RPC server listening hostname
 --rpcport value    HTTP-RPC server listening port (default: 0)
 --rpcmods value    API modules to enable via HTTP-RPC, comma separated list
---ws               Enable the websockets server
+--ws-external      Enable the external websockets server
 --wsport value     Websockets server listening port (default: 0)
 --help, -h         show help
 --version, -v      print the version
@@ -71,26 +71,26 @@
 
 <h3 id="accepted-formats">Accepted Formats</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--global-flags] [--local-flags]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--global-flags] [--local-flags]
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--local-flags] [--global-flags] 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--local-flags] [--global-flags] 
 </code></pre></div></div>
 
 <h2 id="gossamer-subcommands">Gossamer Subcommands</h2>
 
 <p>List of available <strong><em>subcommands</em></strong>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SUBCOMMANDS:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SUBCOMMANDS:
     help, h     Shows a list of commands or help for one command
     account     Create and manage node keystore accounts
     export      Export configuration values to TOML configuration file
     init        Initialize node databases and load genesis data to state
 </code></pre></div></div>
 
-<p>List of <strong><em>local flags</em></strong> for <code class="language-plaintext highlighter-rouge">init</code> subcommand:</p>
+<p>List of <strong><em>local flags</em></strong> for <code class="highlighter-rouge">init</code> subcommand:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--force            Disable all confirm prompts (the same as answering "Y" to all)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--force            Disable all confirm prompts (the same as answering "Y" to all)
 --genesis value    Path to genesis JSON file
 --log value        Supports levels crit (silent) to trce (trace) (default: "info")
 --name value       Node implementation name
@@ -99,9 +99,9 @@
 --base-path value  Data directory for the node
 </code></pre></div></div>
 
-<p>List of <strong><em>local flags</em></strong> for <code class="language-plaintext highlighter-rouge">account</code> subcommand:</p>
+<p>List of <strong><em>local flags</em></strong> for <code class="highlighter-rouge">account</code> subcommand:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--generate         Generate a new keypair. If type is not specified, defaults to sr25519
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--generate         Generate a new keypair. If type is not specified, defaults to sr25519
 --password value   Password used to encrypt the keystore. Used with --generate or --unlock
 --import value     Import encrypted keystore file generated with gossamer
 --list             List node keys
@@ -115,9 +115,9 @@
 --base-path value  Data directory for the node
 </code></pre></div></div>
 
-<p>List of <strong><em>local flag</em></strong> options for <code class="language-plaintext highlighter-rouge">export</code> subcommand:</p>
+<p>List of <strong><em>local flag</em></strong> options for <code class="highlighter-rouge">export</code> subcommand:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--force            Disable all confirm prompts (the same as answering "Y" to all)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--force            Disable all confirm prompts (the same as answering "Y" to all)
 --genesis value    Path to genesis JSON file
 --log value        Supports levels crit (silent) to trce (trace) (default: "info")
 --name value       Node implementation name
@@ -133,66 +133,68 @@
 --nobootstrap      Disables network bootstrapping (mdns still enabled)
 --nomdns           Disables network mdns discovery
 --rpc              Enable the HTTP-RPC server
+--rpc-external     Enable external HTTP-RPC connections
 --rpchost value    HTTP-RPC server listening hostname
 --rpcport value    HTTP-RPC server listening port (default: 0)
 --rpcmods value    API modules to enable via HTTP-RPC, comma separated list
 --ws               Enable the websockets server
+--ws-external      Enable external websockets connections
 --wsport value     Websockets server listening port (default: 0)
 </code></pre></div></div>
 
 <h3 id="accepted-formats-1">Accepted Formats</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--global-flags] [subcommand] [--local-flags]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--global-flags] [subcommand] [--local-flags]
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [subcommand] [--global-flags] [--local-flags]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [subcommand] [--global-flags] [--local-flags]
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [subcommand] [--local-flags] [--global-flags]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [subcommand] [--local-flags] [--global-flags]
 </code></pre></div></div>
 
 <h3 id="invalid-formats">Invalid Formats</h3>
 
-<p><em>please note that <code class="language-plaintext highlighter-rouge">[--local-flags]</code> must come after <code class="language-plaintext highlighter-rouge">[subcommand]</code></em></p>
+<p><em>please note that <code class="highlighter-rouge">[--local-flags]</code> must come after <code class="highlighter-rouge">[subcommand]</code></em></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--local-flags] [subcommand] [--global-flags] 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--local-flags] [subcommand] [--global-flags] 
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--local-flags] [--global-flags] [subcommand] 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--local-flags] [--global-flags] [subcommand] 
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--global-flags] [--local-flags] [subcommand] 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gossamer [--global-flags] [--local-flags] [subcommand] 
 </code></pre></div></div>
 
 <h2 id="running-node-roles">Running Node Roles</h2>
 
 <p>Run an authority node:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer --key alice --roles 4
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer --key alice --roles 4
 </code></pre></div></div>
 
 <p>Run a non-authority node:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer --key alice --roles 1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer --key alice --roles 1
 </code></pre></div></div>
 
 <h2 id="running-multiple-nodes">Running Multiple Nodes</h2>
 
 <p>Two options for running another node at the same time…</p>
 
-<p>(1) copy the config file at <code class="language-plaintext highlighter-rouge">cfg/gssmr/config.toml</code> and manually update <code class="language-plaintext highlighter-rouge">port</code> and <code class="language-plaintext highlighter-rouge">base-path</code>:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp cfg/gssmr/config.toml cfg/gssmr/bob.toml
+<p>(1) copy the config file at <code class="highlighter-rouge">cfg/gssmr/config.toml</code> and manually update <code class="highlighter-rouge">port</code> and <code class="highlighter-rouge">base-path</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp cfg/gssmr/config.toml cfg/gssmr/bob.toml
 # open bob.toml, set port=7002 and base-path=~/.gossamer/gssmr-bob
 # set roles=4 to also make bob an authority node, or roles=1 to make bob a non-authority node
 ./bin/gossamer --key bob --config cfg/gssmr/bob.toml
 </code></pre></div></div>
 
 <p>or run with port, base-path flags:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossmer --key bob --port 7002 --base-path ~/.gossamer/gssmr-bob --roles 4
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossmer --key bob --port 7002 --base-path ~/.gossamer/gssmr-bob --roles 4
 </code></pre></div></div>
 
-<p>To run more than two nodes, repeat steps for bob with a new <code class="language-plaintext highlighter-rouge">port</code> and <code class="language-plaintext highlighter-rouge">base-path</code> replacing <code class="language-plaintext highlighter-rouge">bob</code>.</p>
+<p>To run more than two nodes, repeat steps for bob with a new <code class="highlighter-rouge">port</code> and <code class="highlighter-rouge">base-path</code> replacing <code class="highlighter-rouge">bob</code>.</p>
 
 <p>Available built-in keys:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossmer --key alice
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossmer --key alice
 ./bin/gossmer --key bob
 ./bin/gossmer --key charlie
 ./bin/gossmer --key dave
@@ -204,22 +206,22 @@
 
 <h2 id="initializing-nodes">Initializing Nodes</h2>
 
-<p>To initialize or re-initialize a node, use the init subcommand <code class="language-plaintext highlighter-rouge">init</code>:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer init
+<p>To initialize or re-initialize a node, use the init subcommand <code class="highlighter-rouge">init</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer init
 ./bin/gossamer --key alice --roles 4
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">init</code> can be used with the <code class="language-plaintext highlighter-rouge">--base-path</code> or <code class="language-plaintext highlighter-rouge">--config</code> flag to re-initialize a custom node (ie, <code class="language-plaintext highlighter-rouge">bob</code> from the example above):</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer --config node/gssmr/bob.toml init
+<p><code class="highlighter-rouge">init</code> can be used with the <code class="highlighter-rouge">--base-path</code> or <code class="highlighter-rouge">--config</code> flag to re-initialize a custom node (ie, <code class="highlighter-rouge">bob</code> from the example above):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/gossamer --config node/gssmr/bob.toml init
 </code></pre></div></div>
 
 <h2 id="export-configuration">Export Configuration</h2>
 
-<p><code class="language-plaintext highlighter-rouge">export</code> can be used with the <code class="language-plaintext highlighter-rouge">gossamer</code> root command-line and <code class="language-plaintext highlighter-rouge">--config</code> as the export path to export a toml configuration file.</p>
+<p><code class="highlighter-rouge">export</code> can be used with the <code class="highlighter-rouge">gossamer</code> root command-line and <code class="highlighter-rouge">--config</code> as the export path to export a toml configuration file.</p>
 
       </div>
     </main><footer class="site-footer h-card">
-    <data class="u-url" href="/"></data>
+    <data class="u-url" href="/gossamer/"></data>
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col">
@@ -227,7 +229,7 @@
 </p>
             </div>
         </div>
-        <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChainSafe" title="ChainSafe"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChainSafeth" title="ChainSafeth"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+        <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChainSafe" title="ChainSafe"><svg class="svg-icon grey"><use xlink:href="/gossamer/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChainSafeth" title="ChainSafeth"><svg class="svg-icon grey"><use xlink:href="/gossamer/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
 </div>
     </div>
 </footer>

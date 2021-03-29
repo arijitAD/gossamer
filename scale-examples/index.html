@@ -12,14 +12,14 @@
 <meta property="og:description" content="The Official Documentation for Gossamer A Go Implementation of the Polkadot Host" />
 <meta property="og:site_name" content="Gossamer Docs" />
 <script type="application/ld+json">
-{"headline":"SCALE Examples","@type":"WebPage","author":{"@type":"Person","name":"ChainSafe"},"description":"The Official Documentation for Gossamer A Go Implementation of the Polkadot Host","url":"/scale-examples/","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"ChainSafe"},"description":"The Official Documentation for Gossamer A Go Implementation of the Polkadot Host","url":"/gossamer/scale-examples/","@type":"WebPage","headline":"SCALE Examples","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" /><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Gossamer Docs" />
+<link rel="stylesheet" href="/gossamer/assets/css/style.css" />
+    <link rel="shortcut icon" href="/gossamer/assets/favicon.ico" /><link type="application/atom+xml" rel="alternate" href="/gossamer/feed.xml" title="Gossamer Docs" />
 </head>
 <body><header class="site-header">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Gossamer Docs</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/gossamer/">Gossamer Docs</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -29,32 +29,32 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/run-nodes/">Run Nodes</a><a class="page-link" href="/build-nodes/">Build Nodes</a><a class="page-link" href="/implementation/">Implementation</a><a class="page-link" href="/resources/">Resources</a></div>
+        <div class="trigger"><a class="page-link" href="/gossamer/run-nodes/">Run Nodes</a><a class="page-link" href="/gossamer/build-nodes/">Build Nodes</a><a class="page-link" href="/gossamer/implementation/">Implementation</a><a class="page-link" href="/gossamer/resources/">Resources</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <p>A byte array <code class="language-plaintext highlighter-rouge">A</code> is defined as a set of bytes <code class="language-plaintext highlighter-rouge">(b1,...,bn)</code> st. <code class="language-plaintext highlighter-rouge">n &lt; 2^536</code>.</p>
+        <p>A byte array <code class="highlighter-rouge">A</code> is defined as a set of bytes <code class="highlighter-rouge">(b1,...,bn)</code> st. <code class="highlighter-rouge">n &lt; 2^536</code>.</p>
 
-<p>Let <code class="language-plaintext highlighter-rouge">LS(x, n)</code> be the least significant <code class="language-plaintext highlighter-rouge">n</code> bits of <code class="language-plaintext highlighter-rouge">x</code></p>
+<p>Let <code class="highlighter-rouge">LS(x, n)</code> be the least significant <code class="highlighter-rouge">n</code> bits of <code class="highlighter-rouge">x</code></p>
 
 <p>We encode a mode as the least significant two bits of the first byte of each encoding.</p>
 
-<p>We use <code class="language-plaintext highlighter-rouge">|</code> to mean append. <code class="language-plaintext highlighter-rouge">LE</code> means little endian format</p>
+<p>We use <code class="highlighter-rouge">|</code> to mean append. <code class="highlighter-rouge">LE</code> means little endian format</p>
 
 <h3 id="n--26-mode--0">n &lt; 2^6; mode = 0</h3>
-<p><code class="language-plaintext highlighter-rouge">Enc(A) := l_1 | b_1 |...| b_n when n &lt; 2^6</code></p>
+<p><code class="highlighter-rouge">Enc(A) := l_1 | b_1 |...| b_n when n &lt; 2^6</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">l_1</code> is the encoding of <code class="language-plaintext highlighter-rouge">n</code>. Since <code class="language-plaintext highlighter-rouge">n &lt; 2^6</code> we know <code class="language-plaintext highlighter-rouge">n</code> is at most 6 bits. We take these 6 bits and append <code class="language-plaintext highlighter-rouge">00</code> to indicate the ‘mode’ we are using.</p>
+<p><code class="highlighter-rouge">l_1</code> is the encoding of <code class="highlighter-rouge">n</code>. Since <code class="highlighter-rouge">n &lt; 2^6</code> we know <code class="highlighter-rouge">n</code> is at most 6 bits. We take these 6 bits and append <code class="highlighter-rouge">00</code> to indicate the ‘mode’ we are using.</p>
 
-<p>eg. <code class="language-plaintext highlighter-rouge">n = 0x4 = 00000100</code></p>
+<p>eg. <code class="highlighter-rouge">n = 0x4 = 00000100</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">=&gt; LS(n, 6) = 000100</code></p>
+<p><code class="highlighter-rouge">=&gt; LS(n, 6) = 000100</code></p>
 
 <table>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">=&gt; Enc(A) := 000100| 00 | b_1 | ... | b_4</code>      (ie. <code class="language-plaintext highlighter-rouge">LS(n,6)</code></td>
+      <td><code class="highlighter-rouge">=&gt; Enc(A) := 000100| 00 | b_1 | ... | b_4</code>      (ie. <code class="highlighter-rouge">LS(n,6)</code></td>
       <td>mode</td>
       <td>bytes)</td>
     </tr>
@@ -62,20 +62,20 @@
 </table>
 
 <h3 id="26--n--214-mode--1">2^6 &lt;= n &lt; 2^14; mode = 1</h3>
-<p><code class="language-plaintext highlighter-rouge">Enc(A) := i_1 | i_2 | b_1 |...| b_n</code> when <code class="language-plaintext highlighter-rouge">2^6 &lt;= n &lt; 2^14</code></p>
+<p><code class="highlighter-rouge">Enc(A) := i_1 | i_2 | b_1 |...| b_n</code> when <code class="highlighter-rouge">2^6 &lt;= n &lt; 2^14</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">i_1,i_2</code> are the encoding of <code class="language-plaintext highlighter-rouge">n</code>. Since <code class="language-plaintext highlighter-rouge">2^6 &lt;= n &lt; 2^14</code> we know <code class="language-plaintext highlighter-rouge">n</code> is between 7 and 14 bits. We truncate <code class="language-plaintext highlighter-rouge">n</code> to 14 bits (removing leading zeros or padding to 14 bits) and append <code class="language-plaintext highlighter-rouge">01</code> to indicate the ‘mode’.</p>
+<p><code class="highlighter-rouge">i_1,i_2</code> are the encoding of <code class="highlighter-rouge">n</code>. Since <code class="highlighter-rouge">2^6 &lt;= n &lt; 2^14</code> we know <code class="highlighter-rouge">n</code> is between 7 and 14 bits. We truncate <code class="highlighter-rouge">n</code> to 14 bits (removing leading zeros or padding to 14 bits) and append <code class="highlighter-rouge">01</code> to indicate the ‘mode’.</p>
 
-<p>eg. <code class="language-plaintext highlighter-rouge">n = 0x1000 = 00010000,00000000</code></p>
+<p>eg. <code class="highlighter-rouge">n = 0x1000 = 00010000,00000000</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">=&gt; LS(n, 14) = 010000,00000000</code></p>
+<p><code class="highlighter-rouge">=&gt; LS(n, 14) = 010000,00000000</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">=&gt; 01000000,00000001</code> # Append mode bits, will store in LE in next step</p>
+<p><code class="highlighter-rouge">=&gt; 01000000,00000001</code> # Append mode bits, will store in LE in next step</p>
 
 <table>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">=&gt; Enc(A) := 00000001 | 01000000 | b_1 | ... | b_4096</code> (ie. <code class="language-plaintext highlighter-rouge">LS(n,14)</code></td>
+      <td><code class="highlighter-rouge">=&gt; Enc(A) := 00000001 | 01000000 | b_1 | ... | b_4096</code> (ie. <code class="highlighter-rouge">LS(n,14)</code></td>
       <td>mode</td>
       <td>bytes)</td>
     </tr>
@@ -83,20 +83,20 @@
 </table>
 
 <h3 id="214--n--230-mode--2">2^14 &lt;= n &lt; 2^30; mode = 2</h3>
-<p><code class="language-plaintext highlighter-rouge">Enc(A) := i_1 | i_2 | i_3 | i_4 | b_1 |...| b_n</code> when <code class="language-plaintext highlighter-rouge">2^14 &lt;= n &lt; 2^30</code></p>
+<p><code class="highlighter-rouge">Enc(A) := i_1 | i_2 | i_3 | i_4 | b_1 |...| b_n</code> when <code class="highlighter-rouge">2^14 &lt;= n &lt; 2^30</code></p>
 
-<p>This is the same as the previous case, but now <code class="language-plaintext highlighter-rouge">n</code> occupies 30 bits and the mode is <code class="language-plaintext highlighter-rouge">2</code>.</p>
+<p>This is the same as the previous case, but now <code class="highlighter-rouge">n</code> occupies 30 bits and the mode is <code class="highlighter-rouge">2</code>.</p>
 
-<p>eg. <code class="language-plaintext highlighter-rouge">n = 0x240FF80 = 00000010,01000000,11111111,10000000</code></p>
+<p>eg. <code class="highlighter-rouge">n = 0x240FF80 = 00000010,01000000,11111111,10000000</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">=&gt; LS(n, 30) = 000010,01000000,11111111,10000000</code></p>
+<p><code class="highlighter-rouge">=&gt; LS(n, 30) = 000010,01000000,11111111,10000000</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">=&gt; 00001001,00000011,11111110,00000010</code>  # Append mode bits, will store in LE in next step</p>
+<p><code class="highlighter-rouge">=&gt; 00001001,00000011,11111110,00000010</code>  # Append mode bits, will store in LE in next step</p>
 
 <table>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">=&gt; Enc(A) := 00000010 | 11111110 | 00000011 | 00001001 | b_1 | ... | b_37814144</code> (ie. <code class="language-plaintext highlighter-rouge">LS(n,30)</code></td>
+      <td><code class="highlighter-rouge">=&gt; Enc(A) := 00000010 | 11111110 | 00000011 | 00001001 | b_1 | ... | b_37814144</code> (ie. <code class="highlighter-rouge">LS(n,30)</code></td>
       <td>mode</td>
       <td>bytes)</td>
     </tr>
@@ -104,20 +104,20 @@
 </table>
 
 <h3 id="230--n--2536">2^30 &lt;= n &lt; 2^536</h3>
-<p><code class="language-plaintext highlighter-rouge">Enc(A) := k_1 | k_2 | k_3 | k_4 | k_5 | b_1 |...| b_n</code> when <code class="language-plaintext highlighter-rouge">2^30 &lt;= n &lt; 2^536</code></p>
+<p><code class="highlighter-rouge">Enc(A) := k_1 | k_2 | k_3 | k_4 | k_5 | b_1 |...| b_n</code> when <code class="highlighter-rouge">2^30 &lt;= n &lt; 2^536</code></p>
 
-<p>In this case we define <code class="language-plaintext highlighter-rouge">m</code> to be the number of bytes used to store <code class="language-plaintext highlighter-rouge">n</code>. We then assign <code class="language-plaintext highlighter-rouge">k_1 := m - 4</code> to indicate how many bytes to read for the size of <code class="language-plaintext highlighter-rouge">n</code>.</p>
+<p>In this case we define <code class="highlighter-rouge">m</code> to be the number of bytes used to store <code class="highlighter-rouge">n</code>. We then assign <code class="highlighter-rouge">k_1 := m - 4</code> to indicate how many bytes to read for the size of <code class="highlighter-rouge">n</code>.</p>
 
-<p>eg. <code class="language-plaintext highlighter-rouge">n = 0x100000000 = 00000001 | 0...0 | 0...0 | 0...0 | 0...0</code></p>
+<p>eg. <code class="highlighter-rouge">n = 0x100000000 = 00000001 | 0...0 | 0...0 | 0...0 | 0...0</code></p>
 
-<p><code class="language-plaintext highlighter-rouge"> =&gt; m = 5 </code></p>
+<p><code class="highlighter-rouge"> =&gt; m = 5 </code></p>
 
-<p><code class="language-plaintext highlighter-rouge">=&gt; k_1 = m - 4 = 1</code></p>
+<p><code class="highlighter-rouge">=&gt; k_1 = m - 4 = 1</code></p>
 
 <table>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">=&gt; 000001 | 11 | 0...0 | 0...0 | 0...0 | 0...0 | b_1 | ... | b_4294967296</code> (ie. <code class="language-plaintext highlighter-rouge">m - 4</code></td>
+      <td><code class="highlighter-rouge">=&gt; 000001 | 11 | 0...0 | 0...0 | 0...0 | 0...0 | b_1 | ... | b_4294967296</code> (ie. <code class="highlighter-rouge">m - 4</code></td>
       <td>mode</td>
       <td>n</td>
       <td>bytes)</td>
@@ -127,7 +127,7 @@
 
       </div>
     </main><footer class="site-footer h-card">
-    <data class="u-url" href="/"></data>
+    <data class="u-url" href="/gossamer/"></data>
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col">
@@ -135,7 +135,7 @@
 </p>
             </div>
         </div>
-        <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChainSafe" title="ChainSafe"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChainSafeth" title="ChainSafeth"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+        <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChainSafe" title="ChainSafe"><svg class="svg-icon grey"><use xlink:href="/gossamer/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChainSafeth" title="ChainSafeth"><svg class="svg-icon grey"><use xlink:href="/gossamer/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
 </div>
     </div>
 </footer>
