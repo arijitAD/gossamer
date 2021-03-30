@@ -1,45 +1,42 @@
-name: Go
-
+name: CI
 on:
   push:
-    branches: [ development ]
+    branches:
+      - '**'
   pull_request:
-    branches: [ development ]
+    branches:
+      - '**'
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        node: [10, 12]
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Go
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.15
-
-    - name: Build
-      run: go build -v ./...
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm test
   release:
-    name: 'Release to GitHub'
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Setup Go
-        uses: actions/setup-go@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          go-version: '1.15'
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+          node-version: 12
+          registry-url: 'https://registry.npmjs.org'
+      - uses: go-semantic-release/action@v1
+        id: semrel
         with:
-          node-version: 13
-      - name: Add plugin for conventional commits
-        run: npm install conventional-changelog-conventionalcommits
-        working-directory: ./.github/workflows
-      - name: Release to GitHub
-        working-directory: ./.github/workflows
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-file: package.json
+          changelog-generator-opt: "emojis=true"
+      - run: npm publish
+        if: steps.semrel.outputs.version != ''
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
