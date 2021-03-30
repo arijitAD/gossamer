@@ -21,8 +21,6 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Test
-      run: go test -v ./...
   release:
     name: 'Release to GitHub'
     runs-on: ubuntu-latest
