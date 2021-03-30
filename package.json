@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/arijitAD/gossamer/issues"
   },
-  "homepage": "https://github.com/arijitAD/gossamer#readme"
+  "homepage": "https://github.com/arijitAD/gossamer#readme",
+
+  "release": {
+    "branches": ["development, new-patch-4"]
+  }
 }
