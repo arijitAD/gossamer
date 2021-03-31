@@ -16,18 +16,4 @@
     "url": "https://github.com/arijitAD/gossamer/issues"
   },
   "homepage": "https://github.com/arijitAD/gossamer#readme",
-  "branches": [
-    {
-      "name": "1.x",
-      "range": "1.x",
-      "channel": "1.x"
-    },
-    {
-      "name": "development"
-    },
-    {
-      "name": "next",
-      "channel": "next"
-    }
-  ]
 }
