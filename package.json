@@ -8,21 +8,26 @@
     "lib": "lib",
     "test": "tests"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arijitAD/gossamer.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/arijitAD/gossamer/issues"
   },
   "homepage": "https://github.com/arijitAD/gossamer#readme",
-
-  "release": {
-    "branches": ["development, new-patch-4"]
-  }
+  "branches": [
+    {
+      "name": "1.x",
+      "range": "1.x",
+      "channel": "1.x"
+    },
+    {
+      "name": "development"
+    },
+    {
+      "name": "next",
+      "channel": "next"
+    }
+  ]
 }
